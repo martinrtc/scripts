@@ -21,10 +21,8 @@ def internal_pricing_analysis_request(inputvar):
     return requests.post(f"{api_url}v1/internal-pricing-analysis", json=inputvar, headers=my_headers)
 
 
-def read_excel(start_index, end_index, file):
+def read_excel(file):
     data = pd.read_excel(file)
-    data = data.head(end_index)
-    data = data.tail(end_index - start_index)
     offers = []
     messages = []
     quotation_codes = []
@@ -92,8 +90,8 @@ def read_excel(start_index, end_index, file):
     return data, dealers, non_dealers
 
 
-def main(file, start_index, end_index):
-    return read_excel(start_index, end_index, file)
+def main(file):
+    return read_excel(file)
 
 
 def index_options_generator(length):
@@ -118,26 +116,20 @@ def app():
         shows = pd.read_excel(uploaded_file)
         uploaded_file.seek(0)
         file_container.write(shows)
-        input_options = index_options_generator(len(shows))
-        start_index = st.selectbox(
-            'Start index', input_options, index=0, disabled=False)
-        end_index = st.selectbox(
-            'End index', input_options, index=0, disabled=False)
-
-        if st.button('Analize', disabled=uploaded_file == None and start_index == end_index):
+        if st.button('Analize', disabled=uploaded_file == None):
             buffer = io.BytesIO()
-            with st.spinner(text=f'Analizing from {start_index} to {end_index} ...'):
+            with st.spinner(text=f'Analizing database ...'):
                 data, dealers, non_dealers = main(
-                    uploaded_file, start_index, end_index)
+                    uploaded_file)
                 with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
                     data.to_excel(writer, sheet_name='BUYDEPA DATA')
                     dealers.to_excel(writer, sheet_name='DEALERS')
                     non_dealers.to_excel(writer, sheet_name='NON DEALERS')
                     writer.save()
                     st.download_button(
-                        label=f"Download {start_index} to {end_index}",
+                        label=f"Download excel",
                         data=buffer,
-                        file_name=f"{start_index}-{end_index}.xlsx",
+                        file_name=f"RESPONSE.xlsx",
                         mime="application/vnd.ms-excel"
                     )
             st.success('Done!')
