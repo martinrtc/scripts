@@ -97,7 +97,7 @@ def main(file, start_index, end_index):
 
 def index_options_generator(length):
     max_option = length - (length % 1000) + 1000
-    return [index for index in range(1000, max_option + 1, 1000)]
+    return [index for index in range(0, max_option + 1, 1000)]
 
 
 def app():
