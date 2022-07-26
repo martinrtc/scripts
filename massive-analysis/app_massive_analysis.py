@@ -70,11 +70,13 @@ def read_excel(file):
                 print(
                     f"{i}: Offer: {response['offer']}. Message: {response['message']}")
             elif 'errors' in response:
+                quotation_codes.append('')
                 messages.append(response['errors'])
                 offers.append(False)
                 inferior_offers_limits.append(0)
                 superior_offers_limits.append(0)
             else:
+                quotation_codes.append('')
                 messages.append('Error no identificado')
                 offers.append(False)
                 inferior_offers_limits.append(0)
