@@ -3,6 +3,7 @@ import pandas as pd
 import io
 import requests
 import xlsxwriter
+import openpyxl
 
 # API data
 api_url = "https://api.buydepa.dev/"
