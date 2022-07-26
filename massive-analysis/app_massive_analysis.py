@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import io
 import requests
-import xlsxwriter
 
 # API data
 api_url = "https://api.buydepa.dev/"
