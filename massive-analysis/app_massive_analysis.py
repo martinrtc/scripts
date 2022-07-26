@@ -51,6 +51,7 @@ def read_excel(file):
                 pass
             try:
                 response = internal_pricing_analysis_request(inputvar).json()
+                print(response)
             except:
                 response = {}
             if 'offer' in response and 'message' in response and 'errors' not in response:
