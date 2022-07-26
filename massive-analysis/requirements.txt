@@ -1,0 +1,3 @@
+xlsxwiter
+requests
+pandas
