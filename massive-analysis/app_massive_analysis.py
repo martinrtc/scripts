@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import io
 import requests
+import openpyxl
 
 # API data
 api_url = "https://api.buydepa.dev/"
