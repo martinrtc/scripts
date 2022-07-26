@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import io
 import requests
-import pandas as pd
 import xlsxwriter
 
 # API data
