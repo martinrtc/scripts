@@ -6,7 +6,8 @@ import xlsxwriter
 import openpyxl
 
 # API data
-api_url = "https://api.buydepa.dev/"
+
+api_url = "http://localhost:5000/"
 api_key = 'ZsmyCP63oR4W5ZFGC780V5t7naQOb2bh6bUfIBID'
 my_headers = {'x-api-key': api_key, 'client-id': 'buydepa',
               'Content-Type': 'application/json'}
